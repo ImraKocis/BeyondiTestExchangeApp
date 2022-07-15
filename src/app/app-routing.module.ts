@@ -1,52 +1,21 @@
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import {
-  NbAuthComponent,
-  NbLoginComponent,
-  NbLogoutComponent,
-  NbRegisterComponent,
-  NbRequestPasswordComponent,
-  NbResetPasswordComponent,
-} from '@nebular/auth';
+import { ExtraOptions, RouterModule, Routes } from "@angular/router";
+import { NgModule } from "@angular/core";
+import { HomeComponent } from "./home/home.component";
+import { AboutComponent } from "./about/about.component";
+import { NewsComponent } from "./news/news.component";
+import { ContactComponent } from "./contact/contact.component";
+import { ExchangeComponent } from "./exchange/exchange.component";
+import { HistoryComponent } from "./history/history.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 export const routes: Routes = [
   {
-    path: 'pages',
-    loadChildren: () => import('./pages/pages.module')
-      .then(m => m.PagesModule),
+    path: "home",
+    loadChildren: () => import("./home/home.module").then((m) => m.HomeModule),
   },
-  {
-    path: 'auth',
-    component: NbAuthComponent,
-    children: [
-      {
-        path: '',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'login',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'register',
-        component: NbRegisterComponent,
-      },
-      {
-        path: 'logout',
-        component: NbLogoutComponent,
-      },
-      {
-        path: 'request-password',
-        component: NbRequestPasswordComponent,
-      },
-      {
-        path: 'reset-password',
-        component: NbResetPasswordComponent,
-      },
-    ],
-  },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+
+  // { path: "", redirectTo: "home", pathMatch: "full" },
+  // { path: "**", redirectTo: "home" },
 ];
 
 const config: ExtraOptions = {
@@ -57,5 +26,4 @@ const config: ExtraOptions = {
   imports: [RouterModule.forRoot(routes, config)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
